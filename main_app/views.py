@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from .models import Trip
 
 
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+  return render(request, 'home.html')
+
+def trips_index(request):
+  trips = Trip.objects.filter(user=request.user)
+  return render(request, 'trips/index.html', {'trips' : trips})
 
 def signup(request):
   error_message = ''
