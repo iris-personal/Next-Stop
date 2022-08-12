@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>My Trips</h1>
+
+{% for trip in trips %}
+    <p>{{ trip.name }}</p>
+    <p>Destinations {{ trip.destinations }}</p>
+{% endfor %}
+
+
+{% endblock %}
