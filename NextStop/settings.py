@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'NextStop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nextstop',
+        'NAME': 'next-stop',
     }
 }
 
