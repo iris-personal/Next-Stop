@@ -16,6 +16,10 @@ def trips_index(request):
   trips = Trip.objects.filter(user=request.user)
   return render(request, 'trips/index.html', {'trips' : trips})
 
+def trips_detail(request, trip_id):
+    trip = Trip.objects.get(id=trip_id)
+    return render(request, 'trips/detail.html', {'trip': trip})
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
@@ -34,4 +38,8 @@ def signup(request):
 
 class TripsCreate(LoginRequiredMixin, CreateView):
     model = Trip
-    fields = '__all__'
+    fields = ['name', 'destinations', 'start', 'end']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
