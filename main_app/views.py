@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Trip
 
 
@@ -43,3 +43,11 @@ class TripsCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+class TripsUpdate(LoginRequiredMixin, UpdateView):
+    model = Trip
+    fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'journal']
+
+class TripsDelete(LoginRequiredMixin, DeleteView):
+    model = Trip
+    success_url = '/trips/'
