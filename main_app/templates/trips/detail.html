@@ -3,4 +3,8 @@
 
 <h1>{{trip.name}}</h1>
 
+<a href="{% url 'trips_update' trip.id %}">Update</a>
+<a href="{% url 'trips_delete' trip.id %}">Delete</a>
+
+
 {% endblock %}
