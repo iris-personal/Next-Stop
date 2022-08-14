@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Trip
+from .models import Trip, Activity
+from .forms import ActivityForm
 
 
 
@@ -12,14 +13,21 @@ from .models import Trip
 def home(request):
   return render(request, 'home.html')
 
+@login_required
 def trips_index(request):
   trips = Trip.objects.filter(user=request.user)
   return render(request, 'trips/index.html', {'trips' : trips})
 
+@login_required
 def trips_detail(request, trip_id):
     trip = Trip.objects.get(id=trip_id)
-    return render(request, 'trips/detail.html', {'trip': trip})
+    activity_form = ActivityForm()
+    return render(request, 'trips/detail.html', {
+      'trip': trip,
+      'activity_form': activity_form,
+    })
 
+@login_required
 def signup(request):
   error_message = ''
   if request.method == 'POST':
@@ -36,18 +44,35 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-class TripsCreate(LoginRequiredMixin, CreateView):
-    model = Trip
-    fields = ['name', 'destinations', 'start', 'end']
+@login_required
+def add_activity(request, trip_id):
+  form = ActivityForm(request.POST)
+  if form.is_valid():
+    new_activity = form.save(commit=False)
+    new_activity.trip_id = trip_id
+    new_activity.save()
+  return redirect('detail', trip_id=trip_id)
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+class TripsCreate(LoginRequiredMixin, CreateView):
+  model = Trip
+  fields = ['name', 'destinations', 'start', 'end']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class TripsUpdate(LoginRequiredMixin, UpdateView):
-    model = Trip
-    fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'journal']
+  model = Trip
+  fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'journal']
 
 class TripsDelete(LoginRequiredMixin, DeleteView):
-    model = Trip
-    success_url = '/trips/'
+  model = Trip
+  success_url = '/trips/'
+
+class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
+  model = Activity 
+  fields = ['d_time', 'activity']
+
+class ActivitiesDelete(LoginRequiredMixin, DeleteView):
+  model = Activity
+  success_url = '/trips/<int:trip_id>/'
