@@ -75,4 +75,6 @@ class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
 
 class ActivitiesDelete(LoginRequiredMixin, DeleteView):
   model = Activity
-  success_url = '/trips/<int:trip_id>/'
+  success_url = '/trips/'
+  
+
