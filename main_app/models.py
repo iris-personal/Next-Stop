@@ -31,4 +31,4 @@ class Activity(models.Model):
         ordering = ['d_time']
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'trip_id': self.id})
+        return reverse('detail', kwargs={'trip_id': self.trip.id})
