@@ -6,7 +6,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Trip, Activity
 from .forms import ActivityForm
-from django.urls import reverse
 
 
 
