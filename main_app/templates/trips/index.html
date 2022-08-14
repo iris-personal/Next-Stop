@@ -4,8 +4,10 @@
 <h1>My Trips</h1>
 
 {% for trip in trips %}
-    <p>{{ trip.name }}</p>
-    <p>Destinations {{ trip.destinations }}</p>
+    <a href="{% url 'detail' trip.id %}">
+        <p>{{ trip.name }}</p>
+        <p>Destinations {{ trip.destinations }}</p>
+    </a>
 {% endfor %}
 
 

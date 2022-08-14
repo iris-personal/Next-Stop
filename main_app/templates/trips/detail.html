@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>{{trip.name}}</h1>
-
-<a href="{% url 'trips_update' trip.id %}">Update</a>
-<a href="{% url 'trips_delete' trip.id %}">Delete</a>
+<div>
+    <h1>{{trip.name}}</h1>
+    <a href="{% url 'trips_update' trip.id %}">Update</a>
+    <a href="{% url 'trips_delete' trip.id %}">Delete</a>
+</div>
+<div>
+    <form action="{% url 'add_activity' trip.id %}" method="POST">
+        <div class="form-group">
+            {% csrf_token %}
+            {{ activity_form.as_p }}
+        </div>
+        <button class="btn" type="submit">Add Activity</button>
+    </form>
+    <br>
+    {% for activity in trip.activity_set.all %}
+        <p>{{activity.d_time}}</p>
+        <p>{{activity.activity}}</p>
+        <a href="{% url 'activities_update' activity.id %}">Update</a>
+        <a href="{% url 'activities_delete' activity.id %}">Delete</a>
+    {% endfor %}
+</div>
 
 
 {% endblock %}

@@ -29,3 +29,6 @@ class Activity(models.Model):
     
     class Meta:
         ordering = ['d_time']
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'trip_id': self.id})
