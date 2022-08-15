@@ -4,8 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Trip, Activity
+
+
+from .models import Trip, Activity, Destination
 from .forms import ActivityForm
+import requests
+import os
 
 
 
@@ -53,6 +57,24 @@ def add_activity(request, trip_id):
     new_activity.save()
   return redirect('detail', trip_id=trip_id)
 
+def destinations(request):
+  return render(request, 'destinations.html')
+
+def destinations_create(request):
+  secret_key = os.environ['SECRET_KEY']
+  response = requests.get('https://api.roadgoat.com/api/v2/destinations/:id')
+  data = response.json()
+  destinations_info = {
+      'destination_type': data.destination_type,
+      'name': data.name,
+      'walk_score_url': data.walk_score_url,
+      'budget': data.budget,
+      'safety': data.safety,
+      'known_for': data.known_for,
+      'photos': data.photos
+  }
+  return render(request, 'destinations', )
+
 class TripsCreate(LoginRequiredMixin, CreateView):
   model = Trip
   fields = ['name', 'destinations', 'start', 'end']
@@ -78,3 +100,4 @@ class ActivitiesDelete(LoginRequiredMixin, DeleteView):
   success_url = '/trips/'
   
 
+  
