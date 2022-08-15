@@ -18,6 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item active"><a href="{% url 'destinations' %}" class="nav-link">Find New Destination</a></li>
                 {% if user.is_authenticated %}
                     <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">All My Trips</a></li>
                     <li class="nav-item active"><a href="{% url 'trips_create' %}" class="nav-link">Add New Trip</a></li>

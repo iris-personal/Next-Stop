@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Find a Destination</h1>
+
+<form action="">
+    <input type="" value="budget" placeholder="Budget:1-8">
+    <input type="" value="safety" placeholder="">
+    <input type="" value="walk_score_url" placeholder="">
+    <input type="" value="known_for" placeholder="">
+    <input type="submit" value="Find Destination">
+</form>
+
+<h4>{{ budget.value }}</h4>
+<h4>{{ safety.value }}</h4>
+<h4>{{ walk_score_url.value }}</h4>
+<h4>{{ known_for.value }}</h4>
+
+{% endblock %}
