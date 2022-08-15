@@ -10,7 +10,8 @@ from .models import Trip, Activity, Destination
 from .forms import ActivityForm
 import requests
 import os
-
+import http.client
+import base64
 
 
 # Create your views here.
@@ -60,19 +61,28 @@ def add_activity(request, trip_id):
 def destinations(request):
   return render(request, 'destinations.html')
 
-def destinations_create(request):
+def destinations_search(request):
   secret_key = os.environ['SECRET_KEY']
-  response = requests.get('https://api.roadgoat.com/api/v2/destinations/:id')
-  data = response.json()
-  destinations_info = {
-      'destination_type': data.destination_type,
-      'name': data.name,
-      'walk_score_url': data.walk_score_url,
-      'budget': data.budget,
-      'safety': data.safety,
-      'known_for': data.known_for,
-      'photos': data.photos
+  access_key = os.environ['ACCESS_KEY']
+  encoded_bytes = base64.b64encode(f'{access_key}:{secret_key}'.encode("utf-8"))
+  auth_key = str(encoded_bytes, "utf-8")
+  headers = {
+    'Authorization': f'Basic {auth_key}'
   }
+  print(request.GET)
+  print(request.GET.get('budget'))
+  response = requests.get('https://api.roadgoat.com/api/v2/destinations/auto_complete?q=barcelona', headers=headers)
+  data = response.json()
+  print('data', data['data'][0])
+  # destinations_info = {
+  #     'destination_type': data.destination_type,
+  #     'name': data.name,
+  #     'walk_score_url': data.walk_score_url,
+  #     'budget': data.budget,
+  #     'safety': data.safety,
+  #     'known_for': data.known_for,
+  #     'photos': data.photos
+  # }
   return render(request, 'destinations', )
 
 class TripsCreate(LoginRequiredMixin, CreateView):
@@ -101,3 +111,5 @@ class ActivitiesDelete(LoginRequiredMixin, DeleteView):
   
 
   
+def destinations_create(request):
+  pass
