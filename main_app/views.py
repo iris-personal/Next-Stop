@@ -12,6 +12,7 @@ import requests
 import os
 import http.client
 import base64
+import random
 
 
 # Create your views here.
@@ -62,6 +63,8 @@ def destinations(request):
   return render(request, 'destinations.html')
 
 def destinations_search(request):
+  cityId = random.randint(6576468, 10936014)
+  print(cityId)
   secret_key = os.environ['SECRET_KEY']
   access_key = os.environ['ACCESS_KEY']
   encoded_bytes = base64.b64encode(f'{access_key}:{secret_key}'.encode("utf-8"))
@@ -69,21 +72,13 @@ def destinations_search(request):
   headers = {
     'Authorization': f'Basic {auth_key}'
   }
-  print(request.GET)
-  print(request.GET.get('budget'))
-  response = requests.get('https://api.roadgoat.com/api/v2/destinations/auto_complete?q=barcelona', headers=headers)
+  response = requests.get(f'https://api.roadgoat.com/api/v2/destinations/{cityId}', headers=headers)
   data = response.json()
-  print('data', data['data'][0])
-  # destinations_info = {
-  #     'destination_type': data.destination_type,
-  #     'name': data.name,
-  #     'walk_score_url': data.walk_score_url,
-  #     'budget': data.budget,
-  #     'safety': data.safety,
-  #     'known_for': data.known_for,
-  #     'photos': data.photos
-  # }
-  return render(request, 'destinations', )
+  print(data["data"]["attributes"]["name"])
+ 
+  return render(request, 'destinations.html', {
+   'name': data["data"]["attributes"]["name"]
+  })
 
 class TripsCreate(LoginRequiredMixin, CreateView):
   model = Trip

@@ -4,13 +4,12 @@
 <h1>Find a Destination</h1>
 
 <form action="{% url 'destinations_search' %}" method="GET">
-    <input type="" value="budget" placeholder="Budget:1-8" name="budget">
-    <input type="" value="safety" placeholder="" name="safety">
-    <input type="" value="walk_score_url" placeholder="" name="walk_score_url">
-    <input type="" value="known_for" placeholder="" name="known_for">
     <input type="submit" value="Find Destination">
 </form>
 
+
+
+<h4>{{ name }}</h4>
 <h4>{{ budget.value }}</h4>
 <h4>{{ safety.value }}</h4>
 <h4>{{ walk_score_url.value }}</h4>
