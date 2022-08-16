@@ -10,17 +10,16 @@
 
 
 <h4>{{ data.data.attributes.name }}</h4>
-{% for slug in slugs %}
-    <h5>{{ slug }}</h5>
-{% endfor %}
-<h5>Languages: {{ data.data.attributes.languages }}</h5>
+<img src='{{ photo }}'> 
 <h5>Population: {{ data.data.attributes.population }}</h5>
 <h5>Average Visitor Rating: {{ data.data.attributes.average_rating }}</h5>
 <h5>Safety Rating: {{ safetyRating }}</h5>
 <h5>COVID Rating: {{ covidRating }}</h5>
 <h5>$$$: {{ text }}</h5>
-<img src='{{ photo }}'> 
-
+<h5>Known For:</h5>
+{% for slug in slugs %}
+    <h6>{{ slug }}<img src='https://cdn.roadgoat.com/images/shared/icons/known-for/{{ slug }}-48.png'></h6>
+{% endfor %}
 
 
 {% endblock %}

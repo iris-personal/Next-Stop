@@ -79,19 +79,17 @@ def destinations_search(request):
   text = budgetText['subText']
   safety = data['data']['attributes']['safety']
   safetyText = safety[(list(safety.keys())[0])] 
-  safetyRating = safetyText['value']
+  safetyRating = safetyText['subText']
   covid = data['data']['attributes']['covid']
   covidText = covid[(list(covid.keys())[0])]
   covidRating = covidText['text']
   photo = data['included'][1]['attributes']['image']['thumb']
   slugs = []
-  known_for = data['included']
-  print(known_for)
+  # known_for = data['included']
   for item in data['included']:
     if item['type'] == 'known_for':
       slugs.append(item['attributes']['slug'])
-  print(slugs)
-  # print(data["data"]["attributes"]["name"])
+ 
  
   return render(request, 'destinations.html', {
    'data': data,
