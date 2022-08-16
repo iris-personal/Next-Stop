@@ -74,7 +74,7 @@ def destinations_search(request):
   }
   response = requests.get(f'https://api.roadgoat.com/api/v2/destinations/7879186', headers=headers)
   data = response.json()
-  budget = data["data"]["attributes"]["budget"]
+  budget = data['data']['attributes']['budget']
   budgetText = budget[(list(budget.keys())[0])]
   text = budgetText['subText']
   safety = data['data']['attributes']['safety']
