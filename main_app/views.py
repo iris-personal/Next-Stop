@@ -64,7 +64,7 @@ def destinations(request):
 
 def destinations_search(request):
   cityId = random.randint(6576468, 10936014)
-  print(cityId)
+  # print(cityId)
   secret_key = os.environ['SECRET_KEY']
   access_key = os.environ['ACCESS_KEY']
   encoded_bytes = base64.b64encode(f'{access_key}:{secret_key}'.encode("utf-8"))
@@ -72,12 +72,34 @@ def destinations_search(request):
   headers = {
     'Authorization': f'Basic {auth_key}'
   }
-  response = requests.get(f'https://api.roadgoat.com/api/v2/destinations/{cityId}', headers=headers)
+  response = requests.get(f'https://api.roadgoat.com/api/v2/destinations/7879186', headers=headers)
   data = response.json()
-  print(data["data"]["attributes"]["name"])
+  budget = data["data"]["attributes"]["budget"]
+  budgetText = budget[(list(budget.keys())[0])]
+  text = budgetText['subText']
+  safety = data['data']['attributes']['safety']
+  safetyText = safety[(list(safety.keys())[0])] 
+  safetyRating = safetyText['value']
+  covid = data['data']['attributes']['covid']
+  covidText = covid[(list(covid.keys())[0])]
+  covidRating = covidText['text']
+  photo = data['included'][1]['attributes']['image']['thumb']
+  slugs = []
+  known_for = data['included']
+  print(known_for)
+  for item in data['included']:
+    if item['type'] == 'known_for':
+      slugs.append(item['attributes']['slug'])
+  print(slugs)
+  # print(data["data"]["attributes"]["name"])
  
   return render(request, 'destinations.html', {
-   'name': data["data"]["attributes"]["name"]
+   'data': data,
+   'text': text,
+   'safetyRating': safetyRating,
+   'covidRating': covidRating,
+   'photo': photo,
+   'slugs': slugs,
   })
 
 class TripsCreate(LoginRequiredMixin, CreateView):
