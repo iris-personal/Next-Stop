@@ -33,7 +33,7 @@ def trips_detail(request, trip_id):
       'activity_form': activity_form,
     })
 
-@login_required
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
