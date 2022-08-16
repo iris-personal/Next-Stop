@@ -9,10 +9,18 @@
 
 
 
-<h4>{{ name }}</h4>
-<h4>{{ budget.value }}</h4>
-<h4>{{ safety.value }}</h4>
-<h4>{{ walk_score_url.value }}</h4>
-<h4>{{ known_for.value }}</h4>
+<h4>{{ data.data.attributes.name }}</h4>
+{% for slug in slugs %}
+    <h5>{{ slug }}</h5>
+{% endfor %}
+<h5>Languages: {{ data.data.attributes.languages }}</h5>
+<h5>Population: {{ data.data.attributes.population }}</h5>
+<h5>Average Visitor Rating: {{ data.data.attributes.average_rating }}</h5>
+<h5>Safety Rating: {{ safetyRating }}</h5>
+<h5>COVID Rating: {{ covidRating }}</h5>
+<h5>$$$: {{ text }}</h5>
+<img src='{{ photo }}'> 
+
+
 
 {% endblock %}
