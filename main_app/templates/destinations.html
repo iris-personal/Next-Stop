@@ -3,35 +3,35 @@
 
 <h1>Find a Destination</h1>
 
-<form action="{% url 'destinations_search' %}" method="GET">
-    <input type="submit" class="btn btn-secondary" id="destinations-btn" value="Find Destination">
-</form>
-
-{% if data  %}
-<div class="card mb-3" id="destinations-card" style="max-width: 650px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{{ photos }}" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{ data.data.attributes.name }}</h5>
-          <p class="card-text">Population: {{ data.data.attributes.population }}</p>
-          <p class="card-text">Average Visitor Rating: {{ avgRatingCond }}</p>
-          <p class="card-text">Safety Rating: {{ safetyRating }}</p>
-          <p class="card-text">COVID Rating: {{ covidRating }}</p>
-          <p class="card-text">$$$: {{ text }}</p>
-          <p class="card-text">Known For:<br>
-            {% for slug in slugs %}
-                {{ slug }}<img src='https://cdn.roadgoat.com/images/shared/icons/known-for/{{ slug }}-48.png'>
-            {% endfor %}  
-          </p>
-          <p class="card-text"><small class="text-muted"></small></p>
+<section id="destination-page">
+  <form class="waves-effect waves-light btn" id="btn" action="{% url 'destinations_search' %}" method="GET">
+    <input id="btn" type="submit" value="Find Destination">
+  </form>
+  {% if data %}
+    <div class="row">
+      <div class="col 6">     
+        <div class="card">
+          <div class="card-image">
+            <img src="{{ photos }}" alt="photo">
+          </div>
+          <div class="card-content">
+            <h5>{{ data.data.attributes.name }}</h5>
+            <p>Population: {{ data.data.attributes.population }}</p>
+            <p>Average Visitor Rating: {{ avgRatingCond }}</p>
+            <p>Safety Rating: {{ safetyRating }}</p>
+            <p>COVID Rating: {{ covidRating }}</p>
+            <p>$$$: {{ text }}</p>
+            <p>Known For:<br>
+              {% for slug in slugs %}
+              {{ slug }}<img src='https://cdn.roadgoat.com/images/shared/icons/known-for/{{ slug }}-48.png'>
+              {% endfor %}
+            </p>
+          </div>
         </div>
+        {% else %}
+        {% endif %}
       </div>
     </div>
-  </div>
-{% else %}
-{% endif %}
+</section>
 
 {% endblock %}
