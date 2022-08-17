@@ -83,6 +83,8 @@ def destinations_search(request):
   covid = data['data']['attributes']['covid']
   covidText = covid[(list(covid.keys())[0])]
   covidRating = covidText['text']
+  avgRating = data["data"]["attributes"]["average_rating"]
+  avgRatingCond = "{:.2f}".format(avgRating)
   photo = data['included'][1]['attributes']['image']['thumb']
   slugs = []
   # known_for = data['included']
@@ -98,6 +100,7 @@ def destinations_search(request):
    'covidRating': covidRating,
    'photo': photo,
    'slugs': slugs,
+   'avgRatingCond': avgRatingCond
   })
 
 class TripsCreate(LoginRequiredMixin, CreateView):

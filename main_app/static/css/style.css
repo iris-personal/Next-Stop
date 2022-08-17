@@ -1,3 +1,22 @@
-nav > li {
+li {
+  float: none;
   display: inline-block;
+}
+
+#destinations-card {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+#destinations-btn {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 5vmin;
+}
+
+h1 {
+  margin-left: 10px;
 }
