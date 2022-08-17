@@ -4,10 +4,11 @@
 <h1>Find a Destination</h1>
 
 <form action="{% url 'destinations_search' %}" method="GET">
-    <input type="submit" value="Find Destination">
+    <input type="submit" class="btn btn-secondary" id="destinations-btn" value="Find Destination">
 </form>
 
-<div class="card mb-3" style="max-width: 650px;">
+{% if data  %}
+<div class="card mb-3" id="destinations-card" style="max-width: 650px;">
     <div class="row g-0">
       <div class="col-md-4">
         <img src="{{ photo }}" class="img-fluid rounded-start" alt="...">
@@ -16,7 +17,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ data.data.attributes.name }}</h5>
           <p class="card-text">Population: {{ data.data.attributes.population }}</p>
-          <p class="card-text">Average Visitor Rating: {{ data.data.attributes.average_rating }}</p>
+          <p class="card-text">Average Visitor Rating: {{ avgRatingCond }}</p>
           <p class="card-text">Safety Rating: {{ safetyRating }}</p>
           <p class="card-text">COVID Rating: {{ covidRating }}</p>
           <p class="card-text">$$$: {{ text }}</p>
@@ -30,6 +31,7 @@
       </div>
     </div>
   </div>
-
+{% else %}
+{% endif %}
 
 {% endblock %}
