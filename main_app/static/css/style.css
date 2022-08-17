@@ -1,22 +1,36 @@
-li {
-  float: none;
-  display: inline-block;
+* {
+  font-family: 'Lato', sans-serif;
 }
 
-#destinations-card {
+main {
+  flex: 1 0 auto;
+}
+
+body {
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  margin: auto;
+  flex-direction: column;
 }
 
-#destinations-btn {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  margin: auto;
-  margin-bottom: 5vmin;
+.nav-bar {
+  background-color: #455a64;
 }
 
-h1 {
-  margin-left: 10px;
+#brand {
+  margin-left: 2vmin;
+}
+
+#btn {
+  background-color: #eeb395;
+  color: white;
+}
+
+#destination-page {
+  justify-content: center;
+}
+
+.page-footer {
+  padding-top: 0;
+  text-align: right;
+  background-color: #455a64;
 }
