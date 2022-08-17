@@ -72,33 +72,41 @@ def destinations_search(request):
   headers = {
     'Authorization': f'Basic {auth_key}'
   }
-  response = requests.get(f'https://api.roadgoat.com/api/v2/destinations/7879186', headers=headers)
+  response = requests.get(f'https://api.roadgoat.com/api/v2/destinations/{cityId}', headers=headers)
+  print(cityId)
   data = response.json()
   budget = data['data']['attributes']['budget']
   budgetText = budget[(list(budget.keys())[0])]
   text = budgetText['subText']
   safety = data['data']['attributes']['safety']
-  safetyText = safety[(list(safety.keys())[0])] 
-  safetyRating = safetyText['subText']
+  if safety == {}:
+    safetyRating = 'unknown'
+  else: 
+    safetyText = safety[(list(safety.keys())[0])] 
+    safetyRating = safetyText['subText']
   covid = data['data']['attributes']['covid']
   covidText = covid[(list(covid.keys())[0])]
   covidRating = covidText['text']
   avgRating = data["data"]["attributes"]["average_rating"]
   avgRatingCond = "{:.2f}".format(avgRating)
-  photo = data['included'][1]['attributes']['image']['thumb']
+  for item in data['included']:
+    if item['type'] == 'photo' and int(item['id']) != 549 and int(item['id']) != 683:
+      photos = item['attributes']['image']['medium']
+    else:
+      photos = 'https://i.imgur.com/XqW2YV0.jpg'
   slugs = []
-  # known_for = data['included']
+
   for item in data['included']:
     if item['type'] == 'known_for':
       slugs.append(item['attributes']['slug'])
  
- 
+
   return render(request, 'destinations.html', {
    'data': data,
    'text': text,
    'safetyRating': safetyRating,
    'covidRating': covidRating,
-   'photo': photo,
+   'photos': photos,
    'slugs': slugs,
    'avgRatingCond': avgRatingCond
   })
@@ -125,9 +133,5 @@ class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
 
 class ActivitiesDelete(LoginRequiredMixin, DeleteView):
   model = Activity
-  success_url = '/trips/'
+  success_url = '/trips/{trip_id}/'
   
-
-  
-def destinations_create(request):
-  pass
