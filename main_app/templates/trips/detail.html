@@ -4,6 +4,9 @@
 
 <div>
     <h1>{{trip.name}}</h1>
+    <p>{{ trip.start }} - {{ trip.end }}</p>
+    <p>Destination: {{ trip.destinations }}</p>
+    <p>Accommodation: {{ trip.accommodation }}</p>
     <a href="{% url 'trips_update' trip.id %}">Update</a>
     <a href="{% url 'trips_delete' trip.id %}">Delete</a>
 </div>
