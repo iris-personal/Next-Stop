@@ -39,9 +39,7 @@ def signup(request):
   if request.method == 'POST':
     form = UserCreationForm(request.POST)
     if form.is_valid():
-      #this will add the user to the DB
       user = form.save()
-      # auto matically log in the new user 
       login(request, user)
       return redirect('index')
   else: 
@@ -50,59 +48,52 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-@login_required
-def add_activity(request, trip_id):
-  form = ActivityForm(request.POST)
-  if form.is_valid():
-    new_activity = form.save(commit=False)
-    new_activity.trip_id = trip_id
-    new_activity.save()
-  return redirect('detail', trip_id=trip_id)
-
 def destinations(request):
   return render(request, 'destinations.html')
 
 def destinations_search(request):
   cityId = random.randint(6576468, 10936014)
-  # print(cityId)
   secret_key = os.environ['SECRET_KEY']
   access_key = os.environ['ACCESS_KEY']
-  encoded_bytes = base64.b64encode(f'{access_key}:{secret_key}'.encode("utf-8"))
-  auth_key = str(encoded_bytes, "utf-8")
+  encoded_bytes = base64.b64encode(f'{access_key}:{secret_key}'.encode('utf-8'))
+  auth_key = str(encoded_bytes, 'utf-8')
   headers = {
     'Authorization': f'Basic {auth_key}'
   }
   response = requests.get(f'https://api.roadgoat.com/api/v2/destinations/{cityId}', headers=headers)
-  print(cityId)
   data = response.json()
+  
   budget = data['data']['attributes']['budget']
   if budget == {}:
     text = 'unknown'
   else: 
     budgetText = budget[(list(budget.keys())[0])]
     text = budgetText['subText']
+  
   safety = data['data']['attributes']['safety']
   if safety == {}:
     safetyRating = 'unknown'
   else: 
     safetyText = safety[(list(safety.keys())[0])] 
     safetyRating = safetyText['subText']
+  
   covid = data['data']['attributes']['covid']
   covidText = covid[(list(covid.keys())[0])]
   covidRating = covidText['text']
-  avgRating = data["data"]["attributes"]["average_rating"]
-  avgRatingCond = "{:.2f}".format(avgRating)
+  
+  avgRating = data['data']['attributes']['average_rating']
+  avgRatingCond = '{:.2f}'.format(avgRating)
+  
   for item in data['included']:
     if item['type'] == 'photo' and int(item['id']) != 549 and int(item['id']) != 683:
       photos = item['attributes']['image']['medium']
     else:
       photos = 'https://i.imgur.com/XqW2YV0m.jpg'
+  
   slugs = []
-
   for item in data['included']:
     if item['type'] == 'known_for':
       slugs.append(item['attributes']['slug'])
- 
 
   return render(request, 'destinations.html', {
    'data': data,
@@ -113,6 +104,15 @@ def destinations_search(request):
    'slugs': slugs,
    'avgRatingCond': avgRatingCond
   })
+
+@login_required
+def add_activity(request, trip_id):
+  form = ActivityForm(request.POST)
+  if form.is_valid():
+    new_activity = form.save(commit=False)
+    new_activity.trip_id = trip_id
+    new_activity.save()
+  return redirect('detail', trip_id=trip_id)
 
 class TripsCreate(LoginRequiredMixin, CreateView):
   model = Trip
@@ -133,6 +133,7 @@ class TripsDelete(LoginRequiredMixin, DeleteView):
 class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
   model = Activity 
   fields = ['d_time', 'activity']
+  success_url = '/trips/{trip_id}/'
 
 class ActivitiesDelete(LoginRequiredMixin, DeleteView):
   model = Activity
