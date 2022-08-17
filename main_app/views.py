@@ -76,8 +76,11 @@ def destinations_search(request):
   print(cityId)
   data = response.json()
   budget = data['data']['attributes']['budget']
-  budgetText = budget[(list(budget.keys())[0])]
-  text = budgetText['subText']
+  if budget == {}:
+    text = 'unknown'
+  else: 
+    budgetText = budget[(list(budget.keys())[0])]
+    text = budgetText['subText']
   safety = data['data']['attributes']['safety']
   if safety == {}:
     safetyRating = 'unknown'
@@ -93,7 +96,7 @@ def destinations_search(request):
     if item['type'] == 'photo' and int(item['id']) != 549 and int(item['id']) != 683:
       photos = item['attributes']['image']['medium']
     else:
-      photos = 'https://i.imgur.com/XqW2YV0.jpg'
+      photos = 'https://i.imgur.com/XqW2YV0m.jpg'
   slugs = []
 
   for item in data['included']:

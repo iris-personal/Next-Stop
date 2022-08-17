@@ -23,14 +23,22 @@ body {
 #btn {
   background-color: #eeb395;
   color: white;
+  display: flex;
 }
 
 #destination-page {
   justify-content: center;
+  display: flex;
 }
 
 .page-footer {
   padding-top: 0;
   text-align: right;
   background-color: #455a64;
+}
+
+.card {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
