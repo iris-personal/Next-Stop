@@ -99,6 +99,49 @@ a {
   color: #ffab40;
 }
 
-.picker__date-display, .picker__weekday-display {
+.datepicker-date-display, .datepicker-weekday-display {
   background-color: #455a64;
+}
+
+.datepicker-cancel, .datepicker-clear, .datepicker-done {
+  color: #ffab40;
+}
+
+.datepicker-table td.is-today {
+  color: #eeb395;
+}
+ 
+.datepicker-table td.is-selected {
+  background-color: #eeb395;
+  color: #fff;
+}
+
+.timepicker-canvas line {
+  stroke: #eeb395;
+}
+
+.timepicker-canvas-bg, 
+.timepicker-canvas-bearing {
+    fill: #eeb395;
+}
+
+.timepicker-plate {
+  background-color: #ffe3d8;
+}
+
+.timepicker-digital-display {
+  background-color: #455a64;
+}
+
+.timepicker-close {
+  color: #ffab40;
+}
+
+.timepicker-tick:hover {
+  background-color: #eeb395;
+}
+
+input:focus {
+  border-bottom: 1px solid #ffab40 !important;
+  box-shadow: 0 1px 0 0 #ffab40 !important;
 }

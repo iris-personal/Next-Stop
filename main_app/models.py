@@ -10,8 +10,8 @@ class Trip(models.Model):
     destinations = models.CharField(max_length=80)
     start = models.DateField('Start Date')
     end = models.DateField('End Date')
-    accommodation = models.CharField(max_length=100)
-    notes = models.CharField(max_length=1000)
+    accommodation = models.CharField(max_length=100, default='None Yet!')
+    notes = models.CharField(max_length=1000, default='None Yet!')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

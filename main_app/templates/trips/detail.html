@@ -58,23 +58,19 @@
 
 
 <script>
-    const aDateEl = document.getElementById('a_date');
+    const aDateEl = document.getElementById('id_a_date');
     M.Datepicker.init(aDateEl, {
       format: 'yyyy-mm-dd',
       defaultDate: new Date(),
       setDefaultDate: true,
       autoClose: true
     });
-  
-    const aTimeEl = document.getElementById('a_time');
-    M.Datepicker.init(aTimeEl, {
-      format: 'yyyy-mm-dd',
-      defaultDate: new Date(),
-      setDefaultDate: true,
+    const aTimeEl = document.getElementById('id_a_time');
+      M.Timepicker.init(aTimeEl, {
+      format: '00:00',
       autoClose: true
     });
-  
-  </script>
+</script>
 
 
 {% endblock %}
