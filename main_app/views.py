@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-from .models import Trip, Activity, Destination
+from .models import Trip, Activity
 from .forms import ActivityForm
 import requests
 import os
@@ -32,7 +32,6 @@ def trips_detail(request, trip_id):
       'trip': trip,
       'activity_form': activity_form,
     })
-
 
 def signup(request):
   error_message = ''
@@ -116,7 +115,7 @@ def add_activity(request, trip_id):
 
 class TripsCreate(LoginRequiredMixin, CreateView):
   model = Trip
-  fields = ['name', 'destinations', 'start', 'end']
+  fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'journal']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
