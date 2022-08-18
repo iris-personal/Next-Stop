@@ -62,7 +62,7 @@ def destinations_search(request):
   }
   response = requests.get(f'https://api.roadgoat.com/api/v2/destinations/{cityId}', headers=headers)
   data = response.json()
-  
+  print(cityId)
   budget = data['data']['attributes']['budget']
   if budget == {}:
     text = 'unknown'

@@ -2,34 +2,20 @@
 {% block content %}
 
 {% if object %}
+  <h1>Edit Trip</h1>
+  
+{% else %}
+  <h1>Add Trip</h1>
+
+{% endif %}
   <form action="" method="POST">
     {% csrf_token %}
-      <label>Name your trip:</label>
-      <input type="text" name="name" value="{{ trip.name }}">
-      <label>List your destinations:</label>
-      <input type="text" name="destinations"value="{{ trip.destinations }}">
-      <label>Start Date:</label>
-      <input type="date" name="start" id="" value="{{ trip.start }}">
-      <label>End Date:</label>
-      <input type="date" name="end" id="" value="{{ trip.end }}">
+    <table>
+      {{ form.as_table }}
+    </table>
     <input class="waves-effect waves-light btn" id="btn" type="submit" value="Submit!">
 </form>
 
-{% else %}
-  <h1>Add Trip</h1>
-<form action="" method="POST">
-  {% csrf_token %}
-  <label>Name your trip:</label>
-  <input type="text" name="name">
-  <label>List your destinations:</label>
-  <input type="text" name="destinations">
-  <label>Start Date:</label>
-  <input type="date" name="start" id="" >
-  <label>End Date:</label>
-  <input type="date" name="end" id="" >
-  <input class="waves-effect waves-light btn" id="btn" type="submit" value="Submit!">
-</form>
-{% endif %}
 
 
 {% endblock %}
