@@ -4,13 +4,17 @@ from django import forms
 
 
 class DateInput(forms.DateInput):
-    input_type = 'datetime-local'
+    input_type = 'date'
+
+class TimeInput(forms.TimeInput):
+    input_type = 'time'
 
 class ActivityForm(ModelForm):
     class Meta:
         model = Activity
-        fields = ['d_time', 'activity']
+        fields = ['a_date','a_time', 'activity', 'notes']
         widgets = {
-            'd_time': DateInput(),
+            'a_date': DateInput(),
+            'a_time': TimeInput()
         }
 

@@ -80,3 +80,25 @@ a {
 
  margin-top: 9px;
 }
+
+#trip-details {
+  margin-top: 30px;
+}
+
+#trip-details-card {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#labels {
+  font-weight: bold;
+}
+
+#card-actions {
+  color: #ffab40;
+}
+
+.picker__date-display, .picker__weekday-display {
+  background-color: #455a64;
+}

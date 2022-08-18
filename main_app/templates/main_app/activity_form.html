@@ -6,7 +6,9 @@
 
 <form action="" method="POST">
   {% csrf_token %}
-  {{ form.as_p }}
+  <table>
+    {{ form.as_table }}
+  </table>
   <input type="submit" value="Update Activity" class="waves-effect waves-light btn" id="btn">&nbsp;&nbsp;
   <a class="waves-effect waves-light btn" id="btn" href="{% url 'activities_delete' activity.id %}">Delete Activity</a>
 </form>

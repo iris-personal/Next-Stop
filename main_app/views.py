@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-from .models import Trip, Activity, Destination
+from .models import Trip, Activity
 from .forms import ActivityForm
 import requests
 import os
@@ -32,7 +32,6 @@ def trips_detail(request, trip_id):
       'trip': trip,
       'activity_form': activity_form,
     })
-
 
 def signup(request):
   error_message = ''
@@ -116,7 +115,7 @@ def add_activity(request, trip_id):
 
 class TripsCreate(LoginRequiredMixin, CreateView):
   model = Trip
-  fields = ['name', 'destinations', 'start', 'end']
+  fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'notes']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -124,7 +123,7 @@ class TripsCreate(LoginRequiredMixin, CreateView):
 
 class TripsUpdate(LoginRequiredMixin, UpdateView):
   model = Trip
-  fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'journal']
+  fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'notes']
 
 class TripsDelete(LoginRequiredMixin, DeleteView):
   model = Trip
@@ -132,7 +131,7 @@ class TripsDelete(LoginRequiredMixin, DeleteView):
 
 class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
   model = Activity 
-  fields = ['d_time', 'activity']
+  fields = ['a_time', 'a_date', 'activity', 'notes']
   success_url = '/trips/{trip_id}/'
 
 class ActivitiesDelete(LoginRequiredMixin, DeleteView):
