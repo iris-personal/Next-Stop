@@ -74,5 +74,9 @@ a {
 .card {
   justify-content: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: column 2;
+}
+#brand-icon {
+
+ margin-top: 9px;
 }
