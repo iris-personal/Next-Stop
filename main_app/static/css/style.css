@@ -17,6 +17,10 @@ a {
   color: #455a64;
 }
 
+a:hover {
+  color: #ffab40;
+}
+
 .nav-bar {
   background-color: #455a64;
 }
@@ -76,6 +80,14 @@ a {
   display: flex;
   flex-direction: column 2;
 }
+
+#trip-form-card {
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  width: 80vh;
+}
+
 #brand-icon {
 
  margin-top: 9px;

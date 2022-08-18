@@ -28,7 +28,7 @@ class Activity(models.Model):
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.get_activity_display()} on {self.a_date}'
+        return f'{self.activity} on {self.a_date}'
     
     class Meta:
         ordering = ['a_date']

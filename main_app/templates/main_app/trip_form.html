@@ -8,14 +8,16 @@
   <h1>Add Trip</h1>
 
 {% endif %}
+<div id="trip-form-card">
   <form action="" method="POST">
     {% csrf_token %}
     <table>
-      {{ form.as_table }}
+      {{ form.as_p }}
     </table>
     <input class="waves-effect waves-light btn" id="btn" type="submit" value="Submit!">
+    <br><br>
   </form>
-
+</div>
 <script>
   const dateEl = document.getElementById('id_start');
   M.Datepicker.init(dateEl, {
