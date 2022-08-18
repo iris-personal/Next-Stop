@@ -33,7 +33,8 @@
             <table class="striped">
                 <thead>
                     <tr>
-                        <th>Date & Time </th>
+                        <th>Date </th>
+                        <th>Time </th>
                         <th>Activity</th>
                         <th>Notes</th>
                         <th></th>
@@ -42,7 +43,8 @@
                 <tbody>
                     {% for activity in trip.activity_set.all %}
                     <tr>
-                        <td>{{activity.d_time}}</td>
+                        <td>{{activity.a_date}}</td>
+                        <td>{{activity.a_time}}</td>
                         <td>{{activity.activity}}</td>
                         <td>{{activity.notes}}</td>
                         <td><a href="{% url 'activities_update' activity.id %}" id="card-actions">UPDATE</a></td>
@@ -53,6 +55,26 @@
         </div>
     </div>
 </section>
+
+
+<script>
+    const aDateEl = document.getElementById('a_date');
+    M.Datepicker.init(aDateEl, {
+      format: 'yyyy-mm-dd',
+      defaultDate: new Date(),
+      setDefaultDate: true,
+      autoClose: true
+    });
+  
+    const aTimeEl = document.getElementById('a_time');
+    M.Datepicker.init(aTimeEl, {
+      format: 'yyyy-mm-dd',
+      defaultDate: new Date(),
+      setDefaultDate: true,
+      autoClose: true
+    });
+  
+  </script>
 
 
 {% endblock %}

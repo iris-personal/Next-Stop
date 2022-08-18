@@ -131,7 +131,7 @@ class TripsDelete(LoginRequiredMixin, DeleteView):
 
 class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
   model = Activity 
-  fields = ['a_time, a_date', 'activity', 'notes']
+  fields = ['a_time', 'a_date', 'activity', 'notes']
   success_url = '/trips/{trip_id}/'
 
 class ActivitiesDelete(LoginRequiredMixin, DeleteView):
