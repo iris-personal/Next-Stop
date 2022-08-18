@@ -106,7 +106,16 @@ def destinations_search(request):
 
 @login_required
 def add_activity(request, trip_id):
-  form = ActivityForm(request.POST)
+  hours = request.POST['a_time'][0:2]
+  minutes = request.POST['a_time'][2:5]
+  am_pm = request.POST['a_time'][6:8]
+  new_time = ''
+  if am_pm == 'PM':
+    hours = int(hours) + 12
+  new_time = f'{hours}{minutes}'
+  post = request.POST.copy()
+  post['a_time'] = new_time
+  form = ActivityForm(post)
   if form.is_valid():
     new_activity = form.save(commit=False)
     new_activity.trip_id = trip_id
