@@ -115,7 +115,7 @@ def add_activity(request, trip_id):
 
 class TripsCreate(LoginRequiredMixin, CreateView):
   model = Trip
-  fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'journal']
+  fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'notes']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -123,7 +123,7 @@ class TripsCreate(LoginRequiredMixin, CreateView):
 
 class TripsUpdate(LoginRequiredMixin, UpdateView):
   model = Trip
-  fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'journal']
+  fields = ['name', 'destinations', 'start', 'end', 'accommodation', 'notes']
 
 class TripsDelete(LoginRequiredMixin, DeleteView):
   model = Trip
@@ -131,7 +131,7 @@ class TripsDelete(LoginRequiredMixin, DeleteView):
 
 class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
   model = Activity 
-  fields = ['d_time', 'activity']
+  fields = ['a_time, a_date', 'activity', 'notes']
   success_url = '/trips/{trip_id}/'
 
 class ActivitiesDelete(LoginRequiredMixin, DeleteView):

@@ -21,16 +21,17 @@ class Trip(models.Model):
         return reverse('detail', kwargs={'trip_id': self.id})
 
 class Activity(models.Model):
-    d_time = models.DateTimeField('Activity Day')
+    a_time = models.TimeField('Activity Time')
+    a_date = models.DateField('Activity Date')
     activity = models.CharField(max_length=100)
     notes = models.CharField(max_length=1000)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.get_activity_display()} on {self.d_time}'
+        return f'{self.get_activity_display()} on {self.a_date}'
     
     class Meta:
-        ordering = ['d_time']
+        ordering = ['a_date']
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'trip_id': self.trip.id})

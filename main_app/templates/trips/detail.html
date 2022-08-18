@@ -1,52 +1,58 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-<div class="row">
-    <div class="col s6">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">{{ trip.name }}</span>
-                <p>{{ trip.start }} - {{ trip.end }}</p>
-                <p>Destination: {{ trip.destinations }}</p>
-                <p>Accommodation: {{ trip.accommodation }}</p>
-            </div>
-            <div class="card-action">
-                <a href="{% url 'trips_update' trip.id %}">Update</a>
-                <a href="{% url 'trips_delete' trip.id %}">Delete</a>
+<section id="trip-details">
+    <div class="row">
+        <div class="col s6">
+            <div class="card" id="trip-details-card">
+                <div class="card-content" >
+                    <span id="labels" class="card-title">{{ trip.name }}</span>
+                    <p>{{ trip.start }} - {{ trip.end }}</p>
+                    <p> <span id="labels"> Destination: </span>{{ trip.destinations }}</p>
+                    <p><span id="labels">Accommodation:</span> {{ trip.accommodation }}</p>
+                    <p><span id="labels">Notes:</span> {{ trip.notes }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="{% url 'trips_update' trip.id %}" id="card-actions">Update</a>
+                    <a href="{% url 'trips_delete' trip.id %}" id="card-actions">Delete</a>
+                </div>
             </div>
         </div>
+        <div class="col s6">
+            <form action="{% url 'add_activity' trip.id %}" method="POST">
+                <div class="form-group">
+                    {% csrf_token %}
+                    <table>
+                        {{ activity_form.as_table }}
+                    </table>
+                </div>
+                <br>
+                <button class="waves-effect waves-light btn" id="btn" type="submit">Add Activity</button>
+            </form>
+            <br>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Date & Time </th>
+                        <th>Activity</th>
+                        <th>Notes</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for activity in trip.activity_set.all %}
+                    <tr>
+                        <td>{{activity.d_time}}</td>
+                        <td>{{activity.activity}}</td>
+                        <td>{{activity.notes}}</td>
+                        <td><a href="{% url 'activities_update' activity.id %}" id="card-actions">UPDATE</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="col s6">
-        <form action="{% url 'add_activity' trip.id %}" method="POST">
-            <div class="form-group">
-                {% csrf_token %}
-                {{ activity_form.as_p }}
-            </div>
-            <button class="waves-effect waves-light btn" id="btn" type="submit">Add Activity</button>
-        </form>
-        <br>
-        <table class="striped">
-            <thead>
-                <tr>
-                    <th>Date & Time </th>
-                    <th>Activity</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for activity in trip.activity_set.all %}
-                <tr>
-                    <td>{{activity.d_time}}</td>
-                    <td>{{activity.activity}}</td>
-                    <td><a href="{% url 'activities_update' activity.id %}">Update</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-
+</section>
 
 
 {% endblock %}
