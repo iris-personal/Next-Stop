@@ -3,10 +3,8 @@
 
 {% if object %}
   <h1>Edit Trip</h1>
-  
 {% else %}
   <h1>Add Trip</h1>
-
 {% endif %}
 <div id="trip-form-card">
   <form action="" method="POST">
@@ -26,7 +24,6 @@
     setDefaultDate: true,
     autoClose: true
   });
-
   const endEl = document.getElementById('id_end');
   M.Datepicker.init(endEl, {
     format: 'yyyy-mm-dd',
@@ -34,9 +31,6 @@
     setDefaultDate: true,
     autoClose: true
   });
-
 </script>
-
-
 
 {% endblock %}

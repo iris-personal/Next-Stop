@@ -3,15 +3,11 @@
 {% block content %}
 
 <h1>Delete {{object.name}}</span></h1>
-
-  <h4>Are you sure you want to delete?</h4>
-
-
-      <form action="" method="POST">
-        {% csrf_token %}
-        <input class="waves-effect waves-light btn" id="btn" type="submit" value="Yes - Delete!">&nbsp;&nbsp;
-        <a class="waves-effect waves-light btn" id="btn" href="{% url 'detail' trip.id %}">Cancel</a>
-      </form>
+<h4>Are you sure you want to delete?</h4>
+<form action="" method="POST">
+  {% csrf_token %}
+  <input class="waves-effect waves-light btn" id="btn" type="submit" value="Yes - Delete!">&nbsp;&nbsp;
+  <a class="waves-effect waves-light btn" id="btn" href="{% url 'detail' trip.id %}">Cancel</a>
+</form>
  
-
 {% endblock %}

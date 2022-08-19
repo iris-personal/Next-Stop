@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <h1>Edit <span id="dates-italic">{{ activity.activity }}</span></h1>
-
 <div id="trip-form-card">
   <form action="" method="POST">
     {% csrf_token %}
@@ -15,22 +13,5 @@
     <br><br>
   </form>
 </div>
-
-<script>
-  const aDateEl = document.getElementById('id_a_date');
-  M.Datepicker.init(aDateEl, {
-    format: 'yyyy-mm-dd',
-    defaultDate: new Date(),
-    setDefaultDate: true,
-    autoClose: true
-  });
-  const aTimeEl = document.getElementById('id_a_time');
-    M.Timepicker.init(aTimeEl, {
-    format: '00:00',
-    autoClose: true
-  });
-</script>
-
-
 
 {% endblock %}
