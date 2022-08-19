@@ -10,7 +10,6 @@ from .models import Trip, Activity
 from .forms import ActivityForm
 import requests
 import os
-import http.client
 import base64
 import random
 
@@ -61,7 +60,7 @@ def destinations_search(request):
   }
   response = requests.get(f'https://api.roadgoat.com/api/v2/destinations/{cityId}', headers=headers)
   data = response.json()
-  print(cityId)
+  
   budget = data['data']['attributes']['budget']
   if budget == {}:
     text = 'unknown'
@@ -143,7 +142,6 @@ class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
   model = Activity 
   fields = ['activity', 'notes']
   
-
 class ActivitiesDelete(LoginRequiredMixin, DeleteView):
   model = Activity
   success_url = '/trips/{trip_id}/'
