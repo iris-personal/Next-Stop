@@ -1,11 +1,12 @@
 <div align="center">
 <h1>
-:plane:  Next Stop  :plane:
+:airplane:  Next Stop  :airplane:
 </h1>
 
 <h3>https://nextstopapp.herokuapp.com/</h3>
 
 <h2>The POPs:</h2>
+</div>
 
 <h5>Lillie Sheely</h5>
 <a href="https://www.linkedin.com/in/lillian-sheely/" target="_blank">
