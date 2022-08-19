@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Home</h1>
+<section class="home-page">
+    <div class="row">
+        <div class="col 6">    
+            <h2>Plan your next trip!</h2>
+            <h6>Keep track of all your essential trip details!</h6>
+            <h6>Don't know where to go?</h6>
+            <h6>Find a destination <a href="{% url 'destinations' %}">randomly</a>!</h6><br>
+            <img src="https://i.imgur.com/wd2NEYg.png" alt="">
+            {% if user.is_authenticated %}
+            {% else %}
+            <p class="home-Ps">Sign Up <a href="{% url 'signup' %}">here</a>!</p> 
+            <p class="home-Ps">Already have an account? Log in <a href="{% url 'login' %}">here</a>!</p> 
+            {% endif %}
+        </div>
+    </div>
+</section>
+
 
 {% endblock %}

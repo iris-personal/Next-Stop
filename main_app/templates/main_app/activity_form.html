@@ -2,17 +2,34 @@
 {% block content %}
 
 
-<h1>Edit {{ object.name }}</h1>
+<h1>Edit <span id="dates-italic">{{ activity.activity }}</span></h1>
 
-<form action="" method="POST">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <input type="submit" value="Update Activity" class="waves-effect waves-light btn" id="btn">&nbsp;&nbsp;
-  <a class="waves-effect waves-light btn" id="btn" href="{% url 'activities_delete' activity.id %}">Delete Activity</a>
-</form>
+<div id="trip-form-card">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <table>
+      {{ form.as_p }}
+    </table>
+    <input type="submit" value="Update Activity" class="waves-effect waves-light btn" id="btn">&nbsp;&nbsp;
+    <a class="waves-effect waves-light btn" id="btn" href="{% url 'activities_delete' activity.id %}">Delete Activity</a>
+    <br><br>
+  </form>
+</div>
 
+<script>
+  const aDateEl = document.getElementById('id_a_date');
+  M.Datepicker.init(aDateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+  const aTimeEl = document.getElementById('id_a_time');
+    M.Timepicker.init(aTimeEl, {
+    format: '00:00',
+    autoClose: true
+  });
+</script>
 
 
 

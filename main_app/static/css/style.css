@@ -13,27 +13,13 @@ body {
   background-color: #ffe3d8;
 }
 
-a {
-  color: #455a64;
-}
-
-a:hover {
-  color: #ffab40;
-}
-
-.nav-bar {
-  background-color: #455a64;
-}
-
-#brand {
-  margin-left: 2vmin;
-}
-
 #btn {
   color: white;
   width: 220px;
   text-align: center;
   margin: 0;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 .btn {
@@ -54,19 +40,8 @@ a:hover {
   border-bottom: #eeb395;
 }
 
-#tripsIdx {
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column 2;
-  align-items: center;
-}
-
-#destination-page {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.input-field {
+  width: 200px;
 }
 
 .page-footer {
@@ -81,35 +56,78 @@ a:hover {
   flex-direction: column 2;
 }
 
-#trip-form-card {
-  background-color: white;
-  margin: auto;
-  padding: 20px;
-  width: 80vh;
-}
-
-#brand-icon {
-
- margin-top: 9px;
-}
-
-#trip-details {
-  margin-top: 30px;
-}
-
-#trip-details-card {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
+#labels {
+  font-weight: bold;
 }
 
 p {
   font-weight: bold;
 }
 
-#card-actions {
+#labels {
+  font: bold;
+}
+
+/* Nav Bar */
+a {
+  color: #455a64;
+}
+
+a:hover {
   color: #ffab40;
 }
+
+.nav-bar {
+  background-color: #455a64;
+}
+
+#brand {
+  margin-left: 2vmin;
+}
+
+#brand-icon {
+  margin-top: 9px;
+}
+
+/* Home Page */
+
+.home-Ps {
+  font-weight: normal;
+  text-align: center;
+  margin-top: -7px;
+}
+
+h6, h2 {
+  text-align: center;
+}
+
+.home-page {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Destinations Page */
+
+#destination-page {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Trips Index Page */
+
+#tripsIdx {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column 2;
+  align-items: center;
+}
+
+/* Date/Time Pickers */
 
 .datepicker-date-display, .datepicker-weekday-display {
   background-color: #455a64;
@@ -157,3 +175,34 @@ input:focus {
   border-bottom: 1px solid #ffab40 !important;
   box-shadow: 0 1px 0 0 #ffab40 !important;
 }
+
+/* Trip Details Page */
+
+#dates-italic {
+  font-style: italic;
+}
+
+#card-actions {
+  color: #ffab40;
+}
+
+#trip-details {
+  margin-top: 30px;
+}
+
+#trip-details-card {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#trip-form-card {
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  width: 80vh;
+}
+
+
