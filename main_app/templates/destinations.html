@@ -17,16 +17,16 @@
           </div>
           <div class="card-content">
             <h5>{{ data.data.attributes.name }}</h5>
-            <p>Population: {{ data.data.attributes.population }}</p>
-            <p>Average Visitor Rating: {{ avgRatingCond }}</p>
-            <p>Safety Rating: {{ safetyRating }}</p>
-            <p>COVID Rating: {{ covidRating }}</p>
-            <p>$$$: {{ text }}</p>
-            <p>Known For:<br>
+            <div><span id="labels">Population:</span> {{ data.data.attributes.population }}</div>
+            <div><span id="labels">Average Visitor Rating:</span> {{ avgRatingCond }}</div>
+            <div><span id="labels">Safety Rating:</span> {{ safetyRating }}</div>
+            <div><span id="labels">COVID Rating:</span> {{ covidRating }}</div>
+            <div><span id="labels">$$$:</span> {{ text }}</div>
+            <div><span id="labels">Known For:</span><br>
               {% for slug in slugs %}
               {{ slug }}<img src='https://cdn.roadgoat.com/images/shared/icons/known-for/{{ slug }}-48.png'>
               {% endfor %}
-            </p>
+            </div>
           </div>
         </div>
         {% else %}
@@ -34,5 +34,4 @@
       </div>
     </div>
 </section>
-
 {% endblock %}

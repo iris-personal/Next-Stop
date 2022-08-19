@@ -120,6 +120,7 @@ def add_activity(request, trip_id):
     new_activity = form.save(commit=False)
     new_activity.trip_id = trip_id
     new_activity.save()
+    print(new_activity.id)
   return redirect('detail', trip_id=trip_id)
 
 class TripsCreate(LoginRequiredMixin, CreateView):
@@ -138,37 +139,11 @@ class TripsDelete(LoginRequiredMixin, DeleteView):
   model = Trip
   success_url = '/trips/'
 
-# class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
-#   model = Activity 
-#   fields = ['a_time', 'a_date', 'activity', 'notes']
-#   success_url = '/trips/{trip_id}/'
+class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
+  model = Activity 
+  fields = ['activity', 'notes']
+  
 
 class ActivitiesDelete(LoginRequiredMixin, DeleteView):
   model = Activity
-  success_url = '/trips/{trip_id}/'
-  
-# def edit_activity(request, trip_id):
-#   form = ActivityForm(request.POST)
-#   hours = request.POST.get('a_time', False) 
-#   # is_private = request.POST.get('is_private', False)
-#   minutes = request.POST.get('a_time', False)
-#   am_pm = request.POST.get('a_time', False)
-#   new_time = ''
-#   if am_pm == 'PM':
-#     hours = int(hours) + 12
-#   new_time = f'{hours}{minutes}'
-#   post = request.POST.copy()
-#   post['a_time'] = new_time
-#   # form = ActivityForm(post)
-#   if form.is_valid():
-#     new_activity = form.save(commit=False)
-#     new_activity.trip_id = trip_id
-#     new_activity.save()
-#   return redirect('detail', trip_id=trip_id)
-
-
-
-class ActivitiesUpdate(LoginRequiredMixin, UpdateView):
-  model = Activity 
-  fields = ['a_time', 'a_date', 'activity', 'notes']
   success_url = '/trips/{trip_id}/'

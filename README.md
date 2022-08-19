@@ -37,6 +37,11 @@ Next Stop is a travel application that makes picking and organizing your next tr
 
 **SCREENSHOTS:**<br>
 
+<img src = "https://i.imgur.com/sxIp7SN.png" />
+<br>
+<img src = "https://i.imgur.com/zk57ZwE.png" />
+<br>
+<img src = "https://i.imgur.com/G1bMiJc.png" />
 
 
 **TECHNOLOGY:**<br>
@@ -55,6 +60,13 @@ Next Stop is a travel application that makes picking and organizing your next tr
  <summary>Trello Board</summary>
   <a href="https://trello.com/b/RK4imob0/project-3-board"
     >https://trello.com/b/RK4imob0/project-3-board</a
+  >
+</details>
+
+<details>
+ <summary>Pitch Deck</summary>
+  <a href="https://docs.google.com/presentation/d/19rN-ZUtpuIRyVIwPDxk3bVWGei_MSXAD_0CX6XqsZk0/edit#slide=id.g88b7b50d4b_1_396"
+    >https://docs.google.com/presentation/d/19rN-ZUtpuIRyVIwPDxk3bVWGei_MSXAD_0CX6XqsZk0/edit#slide=id.g88b7b50d4b_1_396</a
   >
 </details>
 
