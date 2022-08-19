@@ -7,14 +7,14 @@
             <div class="card" id="trip-details-card">
                 <div class="card-content" >
                     <span id="labels" class="card-title">{{ trip.name }}</span>
-                    <p>{{ trip.start }} - {{ trip.end }}</p>
-                    <p> <span id="labels"> Destination: </span>{{ trip.destinations }}</p>
-                    <p><span id="labels">Accommodation:</span> {{ trip.accommodation }}</p>
-                    <p><span id="labels">Notes:</span> {{ trip.notes }}</p>
+                    <div id="dates-italic">{{ trip.start }} - {{ trip.end }}</div>
+                    <div><span id="labels"> Destination: </span>{{ trip.destinations }}</div>
+                    <div><span id="labels">Accommodation:</span> {{ trip.accommodation }}</div>
+                    <div><span id="labels">Notes:</span> {{ trip.notes }}</div>
                 </div>
                 <div class="card-action">
-                    <a href="{% url 'trips_update' trip.id %}" id="card-actions">Update</a>
-                    <a href="{% url 'trips_delete' trip.id %}" id="card-actions">Delete</a>
+                    <a href="{% url 'trips_update' trip.id %}" id="card-actions">Update</a> &nbsp&nbsp
+                    <a href="{% url 'trips_delete' trip.id %}" id="card-actions">Delete</a> &nbsp&nbsp
                 </div>
             </div>
         </div>
